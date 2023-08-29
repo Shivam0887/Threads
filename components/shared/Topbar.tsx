@@ -21,7 +21,7 @@ const Topbar = () => {
       </Link>
 
       <div className="flex items-center gap-1">
-        <div className="block sm:hidden">
+        <div className="block md:hidden">
           <SignedIn>
             <SignOutButton signOutCallback={() => router.push("/sign-in")}>
               <div className="flex cursor-pointer">

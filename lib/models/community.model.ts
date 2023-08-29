@@ -1,7 +1,7 @@
 import { Schema, model, models } from "mongoose";
 
-const userSchema = new Schema({
-  userId: {
+const communitySchema = new Schema({
+  communityId: {
     type: String,
     required: true,
   },
@@ -16,23 +16,24 @@ const userSchema = new Schema({
   },
   image: String,
   bio: String,
+  createdBy: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
   threads: [
     {
       type: Schema.Types.ObjectId,
       ref: "Thread",
     },
   ],
-  communities: [
+  members: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Community",
+      ref: "User",
     },
   ],
-  onboarded: {
-    type: Boolean,
-  },
 });
 
-const User = models.User || model("User", userSchema);
+const Community = models.Community || model("Community", communitySchema);
 
-export default User;
+export default Community;
