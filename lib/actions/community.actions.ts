@@ -18,7 +18,6 @@ export async function createCommunity(
 ) {
   try {
     connectToDB();
-
     // Find the user with the provided unique id
     const user = await User.findOne({ userId: createdById });
 
@@ -58,7 +57,7 @@ export async function fetchCommunityDetails(communityId: string) {
       {
         path: "members",
         model: User,
-        select: "name username image _id id",
+        select: "name username image _id userId",
       },
     ]);
 
@@ -89,8 +88,11 @@ export async function fetchCommunityPosts(communityId: string) {
           populate: {
             path: "author",
             model: User,
-            select: "image _id", // Select the "name" and "_id" fields from the "User" model
+            select: "image _id userId", // Select the "name" and "_id" fields from the "User" model
           },
+        },
+        {
+          path: "communityId",
         },
       ],
     });

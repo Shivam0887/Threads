@@ -14,7 +14,7 @@ type Props = {
     image: string;
   };
   community: {
-    id: string;
+    communityId: string;
     name: string;
     image: string;
   };
@@ -121,7 +121,7 @@ const ThreadCard = ({
 
       {!isComment && community && (
         <Link
-          href={`/communities/${community.id}`}
+          href={`/communities/${community.communityId}`}
           className="mt-5 flex items-center"
         >
           <p className="text-subtle-medium text-gray-1">

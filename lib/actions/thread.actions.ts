@@ -33,7 +33,7 @@ export async function createThread({
     const newThread = await Thread.create({
       text,
       author,
-      communityId: communityObjectId,
+      communityId: communityObjectId?._id,
     });
 
     await User.findByIdAndUpdate(author, {
@@ -41,7 +41,7 @@ export async function createThread({
     });
 
     if (communityObjectId) {
-      await Community.findByIdAndUpdate(communityObjectId, {
+      await Community.findByIdAndUpdate(communityObjectId._id, {
         $push: { threads: newThread._id },
       });
     }
